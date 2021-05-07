@@ -1,1 +1,8 @@
-.Xresources
+xterm*faceName: Ubuntu Mono
+xterm*faceSize: 13
+
+!xterm*background: #282d2d
+!xterm*foreground: #cccccc
+xterm*background: #0b0d0d
+xterm*foreground: #cccccc
+xterm*selectToClipboard: true
