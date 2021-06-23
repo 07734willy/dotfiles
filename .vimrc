@@ -108,7 +108,7 @@ silent! set syntax
 
 "let g:pyrepl_set_colors = 1
 
-" hi PyReplOut ctermfg=red
+" hi PyReplOut ctermfg=red ctermbg=green
 
 " fun! PyFoldDepth(lineno) abort
 " 	let l:prevline = getline(a:lineno-1)

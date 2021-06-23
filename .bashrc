@@ -132,8 +132,13 @@ alias vimreplay="~/Desktop/vimgolf/vimreplay.sh"
 
 export DISCORD_BOT_PREFIX="?"
 
-source ~/.secrets.sh
-source "$HOME/.cargo/env"
+if [ -f ~/.secrets.sh ]; then
+	source ~/.secrets.sh
+fi
+
+if [ -f "$HOME/.cargo/env" ]; then
+	source "$HOME/.cargo/env"
+fi
 
 #export PS1="\[\033[01;37m\][\j]\[\033[00m\] \[\033[00;33m\]\w\[\033[00m\]\$ "
 export PS1="\[\033[00m\]\[\033[00;33m\]\w\[\033[00m\]\$ "
