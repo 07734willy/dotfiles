@@ -3,11 +3,12 @@ set nocompatible
 let mapleader = " "
 let maplocalleader = "\<space>"
 
-silent! call plug#begin('~/.vim/plugged')
-if exists("plug#begin")
+try
+	call plug#begin('~/.vim/plugged')
 	Plug '~/.vimplugins/PyRepl'
-endif
-silent! call plug#end()
+	call plug#end()
+catch /.*plug#begin.*/
+endtry
 
 fun! SetFoldColors() abort
 	hi FoldColumn ctermbg=black ctermfg=blue
