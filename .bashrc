@@ -116,59 +116,41 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export CARGO_HOME=$HOME
-
-alias bofa="python3 ~/Desktop/login.py"
-
 alias clopc="find . -name '*.py' | xargs wc -l"
-
-export PYCONNECT_TERM="gnome-terminal"
-
-# Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-
-alias vimreplay="~/Desktop/vimgolf/vimreplay.sh"
-
-export DISCORD_BOT_PREFIX="?"
 
 if [ -f ~/.secrets.sh ]; then
 	source ~/.secrets.sh
 fi
 
+export CARGO_HOME=$HOME
+
 if [ -f "$HOME/.cargo/env" ]; then
 	source "$HOME/.cargo/env"
 fi
-
-#export PS1="\[\033[01;37m\][\j]\[\033[00m\] \[\033[00;33m\]\w\[\033[00m\]\$ "
-export PS1="\[\033[00m\]\[\033[00;33m\]\w\[\033[00m\]\$ "
 
 export VISUAL=/usr/bin/vim
 export EDITOR=/usr/bin/vim
 
 export PATH="$HOME/.idris2/bin:$PATH"
-#export LD_LIBRARY_PATH="$HOME/.idris2/lib:$LD_LIBRARY_PATH"
 
+export PS1="$(__git_ps1)\[\033[00m\]\[\033[00;33m\]\w\[\033[00m\]\$ "
 
-#PS1_BEFORE="\[\033[01;37m\][\j]\[\033[00m\] \[\033[00;33m\]\w"
-#PS1_AFTER="\$\[\033[00m\]"
-#reset_readline_prompt_mode_strings () {
-#    bind "set vi-ins-mode-string \"${PS1_BEFORE@P}\1\e[0m\2${PS1_AFTER@P}\""
-#    bind "set vi-cmd-mode-string \"${PS1_BEFORE@P}\1\e[92m\2${PS1_AFTER@P}\""
-#}
-
-PS1_INNER="\[\033[01;37m\][\j]"
 reset_readline_prompt_mode_strings () {
-    bind "set vi-ins-mode-string \"${PS1_INNER@P}\1\e[90m\2 (+) \1\e[0m\2\""
-    bind "set vi-cmd-mode-string \"${PS1_INNER@P}\1\e[92m\2 (:) \1\e[0m\2\""
+	if [ $? = 0 ]; then
+		PS1_INNER="\[\033[01;37m\][\j]"
+	else
+		PS1_INNER="\[\033[01;31m\][\j]"
+	fi
+	
+	if command -v __git_ps1 &> /dev/null; then
+		PS1_GIT_BRANCH="\[\033[00m\]\[\033[00;32m\]`__git_ps1`" 
+	fi
+	export PS1="${PS1_GIT_BRANCH} \[\033[00;33m\]\w\[\033[00m\]\$ "
+
+    bind "set vi-ins-mode-string \"${PS1_INNER@P}\1\e[90m\2 (+)\1\e[0m\2\""
+    bind "set vi-cmd-mode-string \"${PS1_INNER@P}\1\e[92m\2 (:)\1\e[0m\2\""
 }
 
 PROMPT_COMMAND=reset_readline_prompt_mode_strings
-#PS1=' '
-#PS2='... '
 
 bind -x '"\x18":"fg"'
-
-export LFS=/mnt/lfs
-
-alias restartdebian="sudo grub-reboot 'Debian GNU/Linux (on /dev/nvme1n1p6)'" 
