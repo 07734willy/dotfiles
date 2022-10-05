@@ -1,0 +1,4 @@
+#!/bin/bash
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/gems/bin"
+export PATH="$PATH:$HOME/.idris2/bin"

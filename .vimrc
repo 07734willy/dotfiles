@@ -5,7 +5,7 @@ let maplocalleader = "\<space>"
 
 try
 	call plug#begin('~/.vim/plugged')
-	Plug '~/.vimplugins/PyRepl'
+	Plug '~/vimscripts/pyrepl'
 	call plug#end()
 catch /.*plug#begin.*/
 endtry
@@ -42,18 +42,13 @@ noremap <down> <C-w><down>
 noremap <left> <C-w><left>
 noremap <right> <C-w><right>
 
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+noremap <leader>m :silent make \| redraw!<CR>
 
 nnoremap <silent> <CR> :noh<CR><CR>
 
-set tabstop=4
+set tabstop=4 shiftwidth=4
 set noexpandtab
-set smarttab
-set shiftwidth=4
-set autoindent
+set smarttab autoindent
 
 set wildmenu
 set background=dark
@@ -61,6 +56,3 @@ colorscheme elflord
 set hlsearch incsearch
 
 silent! set syntax
-
-set novb
-set t_vb=

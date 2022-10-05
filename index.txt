@@ -1,5 +1,8 @@
 .bashrc
 .dircolors
+.gitconfig
+.gitignore.global
 .inputrc
 .vimrc
 .Xresources
+.xprofile
